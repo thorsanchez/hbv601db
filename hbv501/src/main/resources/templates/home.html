@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Forums</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="welcome-message" th:if="${LoggedInUser != null}">
+        Welcome, <span th:text="${LoggedInUser.username}"></span>!
+    </div>
+    <div class="auth-links">
+        <a href="/signup" th:if="${LoggedInUser == null}">Signup</a>
+        <a href="/login" th:if="${LoggedInUser == null}">Login</a>
+        <a href="/logout" th:if="${LoggedInUser != null}">Logout</a>
+        <a href="/deleteUser" th:if="${LoggedInUser != null}">Delete User</a>
+        <a href="/profile" th:if="${LoggedInUser != null}">Profile</a>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Search Forums</h1>
+    <form th:action="@{/search}" method="get" class="search-form">
+        <label for="category">Category:</label>
+        <input type="text" id="category" name="category" placeholder="Enter category">
+
+        <label for="name">Forum Name:</label>
+        <input type="text" id="name" name="name" placeholder="Enter forum name">
+
+        <button type="submit">Search</button>
+    </form>
+    
+    <div th:if="${ad != null}" class="ad">
+        <div class="ad-cards">
+            <div class="ad-card">
+                <p th:text="${ad.contents}"></p>
+                <div class="card-actions">
+                <a th:if="${LoggedInUser != null and LoggedInUser.userId == ad.createdBy.userId}"
+                   th:href="@{/ad/editAd/{adId}(adId=${ad.adId})}">Edit Ad</a>
+                <a th:if="${LoggedInUser != null and LoggedInUser.userId == ad.createdBy.userId}"
+                   th:href="@{/ad/delete/{adId}(adId=${ad.adId})}">Delete Ad</a>
+
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    <h2>All Forums</h2>
+    <h3 th:text="'Page ' + ${pageNumber} + '/' + ${maxPage}">Page Number</h3>
+    <div class="forum-cards">
+        <div class="forum-card" th:each="forum : ${forum}">
+            <h3 th:text="${forum.name}"></h3>
+            <p th:text="${forum.description}"></p>
+            <span class="category" th:text="${forum.category}"></span>
+            <div class="card-actions">
+                <a th:href="@{/forum/{forumId}(forumId=${forum.forum_id})}">View</a>
+                <a th:if="${LoggedInUser != null and LoggedInUser.userId == forum.createdBy.userId}"
+                   th:href="@{/forum/editForum/{forumId}(forumId=${forum.forum_id})}">Edit Forum</a>
+                <a th:if="${LoggedInUser != null and LoggedInUser.userId == forum.createdBy.userId}"
+                   th:href="@{/forum/delete/{forumId}(forumId=${forum.forum_id})}">Delete Forum</a>
+            </div>
+        </div>
+        <div class="pagination-controls">
+            <a th:href="@{/(page=${pageNumber-1})}" th:if="${pageNumber > 1}" class="prev-page">Previous Page</a>
+            <a th:href="@{/(page=${pageNumber+1})}" th:if="${pageNumber < maxPage}" class="next-page">Next Page</a>
+        </div>
+    </div>
+
+    <div class="create-forum">
+        <a href="/addforum">Create Forum</a>
+        <a href="/addAd">Create Ad</a>
+    </div>
+</div>
+
+
+</body>
+</html>
+

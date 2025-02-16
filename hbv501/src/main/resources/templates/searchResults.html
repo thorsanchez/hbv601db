@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>
+        Search Results
+        <span th:if="${category != null and category != ''}">, Category: <span th:text="${category}"></span></span>
+        <span th:if="${name != null and name != ''}">, Name: <span th:text="${name}"></span></span>
+    </h1>
+
+    <!-- Display no results message if forums are empty -->
+    <div class="no-forum-message" th:if="${#lists.isEmpty(forums)}">
+        <p>No matching forums found!</p>
+    </div>
+
+    <!-- Display search results as cards -->
+    <h3 th:text="'Page ' + ${pageNumber} + '/' + ${maxPage}">Page Number</h3>
+    <div class="forum-cards" th:if="${!#lists.isEmpty(forums)}">
+        <div class="forum-card" th:each="forum : ${forums}">
+            <h3 th:text="${forum.name}">Forum Name</h3>
+            <p th:text="${forum.description}">Forum Description</p>
+            <span class="category" th:text="${forum.category}">Category</span>
+            <div class="card-actions">
+                <a th:href="@{/forum/{forumId}(forumId=${forum.forum_id})}">View</a>
+            </div>
+        </div>
+        <div class="pagination-controls">
+            <a th:href="@{/forum/{forumId}(forumId=${forum.forum_id},page=${pageNumber-1})}" th:if="${pageNumber > 1}" class="prev-page">Previous Page</a>
+            <a th:href="@{/forum/{forumId}(forumId=${forum.forum_id},page=${pageNumber+1})}" th:if="${pageNumber < maxPage}" class="next-page">Next Page</a>
+        </div>
+    </div>
+    <div class="additional-links">
+        <a href="/" class="back-home">Back home</a>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="'Forum: ' + ${forum.name}">Forum Details</title>
+    <link rel="stylesheet" href="/css/post.css">
+</head>
+<body>
+
+<div class="container">
+    <h1 th:text="'Forum: ' + ${forum.name}">Forum Name</h1>
+    <p class="forum-description" th:text="${forum.description}">Forum Description</p>
+    <h2>Posts in this Forum</h2>
+    <div th:if="${posts == null || #lists.isEmpty(posts)}" class="no-posts">
+        <h3>No Posts yet!</h3>
+    </div>
+    <h3 th:text="'Page ' + ${pageNumber} + '/' + ${maxPage}">Page Number</h3>
+    <div th:if="${posts != null && !#lists.isEmpty(posts)}" class="posts">
+        <div class="post-card" th:each="post : ${posts}">
+            <div class="post-header">
+                <h3 th:text="${post.title}">Post Title</h3>
+                <span class="post-tag" th:text="${post.tag}">Tag</span>
+            </div>
+            <p class="post-content" th:text="${post.getContent()}">Content</p>
+            <div class="post-meta">
+                <span class="post-author" th:text="'By ' + ${post.user.getUsername()}">Author</span>
+                <div class="post-likes">
+                    <span th:text="${#lists.size(post.userLikes)}">0</span> Likes
+                    <span th:text="${#lists.size(post.userDislikes)}">0</span> Dislikes
+                </div>
+            </div>
+            <div class="post-actions">
+                <a th:if="${LoggedInUser != null and LoggedInUser.userId == post.user.userId}"
+                   th:href="@{/posts/edit/{postId}(postId=${post.post_id})}" class="edit-link">Edit Post</a>
+                <a th:if="${LoggedInUser != null and LoggedInUser.userId == post.user.userId}"
+                   th:href="@{/posts/delete/{postId}(postId=${post.post_id})}" class="delete-link">Delete Post</a>
+                <form th:action="@{/post/{postId}/like(postId=${post.post_id})}" method="post">
+                    <button class="like-btn" type="submit">Like</button>
+                </form>
+                <form th:action="@{/post/{postId}/dislike(postId=${post.post_id})}" method="post">
+                    <button class="dislike-btn" type="submit">Dislike</button>
+                </form>
+            </div>
+        </div>
+       <div class="pagination-controls">
+            <a th:href="@{/forum/{forumId}(forumId=${forum.forum_id},page=${pageNumber-1})}" th:if="${pageNumber > 1}" class="prev-page">Previous Page</a>
+            <a th:href="@{/forum/{forumId}(forumId=${forum.forum_id},page=${pageNumber+1})}" th:if="${pageNumber < maxPage}" class="next-page">Next Page</a>
+        </div>
+    </div>
+    <div class="additional-links">
+        <a href="/addpost" class="add-post-btn">Add a new post</a>
+        <a href="/" class="back-home">Back home</a>
+    </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,260 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, #457b9d, #1d3557);
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+.welcome-message {
+    font-size: 1.1em;
+}
+
+.auth-links a {
+    margin-left: 15px;
+    color:  #e9ecef;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-links a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.search-form, .create-forum {
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.search-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+.search-form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-form button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #0056b3;
+}
+
+.forum-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.forum-card {
+    flex: 1 1 calc(50% - 15px);
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.forum-card:hover {
+    transform: translateY(-5px);
+}
+
+.forum-card h3 {
+    color: #457b9d;
+    margin-bottom: 10px;
+}
+
+.forum-card p {
+    font-size: 0.9em;
+    color: #666;
+}
+
+.category {
+    display: inline-block;
+    background-color: #e0e7ff;
+    color: #1d3557;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    margin-bottom: 10px;
+}
+
+.card-actions a {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 10px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.card-actions a:hover {
+    color: #0056b3;
+}
+
+.create-forum a {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.create-forum a:hover {
+    background-color: #0056b3;
+}
+
+.no-forum-message {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+
+form {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #0056b3;
+}
+
+.additional-links {
+    margin-top: 20px;
+}
+
+.back-home, .forgot-pass {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+.back-home.hover, .forgot-pass:hover{
+   background-color:  #0056b3;
+}
+
+.pagination-controls{
+    margin-top: 10px;
+}
+
+.prev-page, .next-page{
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 10px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.prev-page:hover, .next-page:hover{
+    color: #0056b3;
+}
+
+.ad-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.ad-card {
+    flex: 1 1 calc(50% - 15px); /* Makes the ad cards responsive */
+    background-color: #fff;
+    padding: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Optional shadow */
+    border-radius: 8px; /* Rounded corners */
+    transition: transform 0.3s; /* Adds hover effect */
+    margin-bottom: 15px; /* Spacing between cards */
+}
+
+.ad-card:hover {
+    transform: translateY(-5px); /* Hover effect for interaction */
+}
+
+.ad-card h3 {
+    color: #333;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.ad-card p {
+    font-size: 1em;
+    color: #666;
+    margin: 0;
+}

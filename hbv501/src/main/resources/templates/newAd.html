@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Ad</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<form th:action="@{/addAd}" th:object="${ad}" method="post">
+    <label for="amount">Amount</label>
+    <input type="text" th:field="*{amount}" id="amount" placeholder="Amount">
+    <span th:if="${#fields.hasErrors('amount')}" th:errors="*{amount}"></span>
+
+    <label for="category">Category</label>
+    <input type="text" th:field="*{category}" id="category" placeholder="Category">
+    <span th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></span>
+
+    <label for="contents">Content</label>
+    <textarea th:field="*{contents}" id="contents" placeholder="Contents"></textarea>
+    <span th:if="${#fields.hasErrors('contents')}" th:errors="*{contents}"></span>
+
+    <button type="submit">Add Ad</button>
+</form>
+
+</html>

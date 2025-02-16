@@ -1,0 +1,161 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+h1 {
+    color: #457b9d;
+}
+
+.forum-description {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.no-posts {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+    margin: 20px 0;
+}
+
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.post-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.post-card:hover {
+    transform: translateY(-5px);
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-header h3 {
+    color: #457b9d;
+    margin: 0;
+}
+
+.post-tag {
+    background-color: #e0e7ff;
+    color: #1d3557;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.8em;
+}
+
+.post-content {
+    margin: 10px 0;
+    color: #333;
+    font-size: 1em;
+}
+
+.post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.post-likes {
+    display: flex;
+    gap: 10px;
+}
+
+.post-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.like-btn, .dislike-btn{
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.like-btn:hover, .dislike-btn:hover {
+    background-color: #0056b3;
+}
+.edit-link, .delete-link{
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+.edit-link:hover, .delete-link:hover{
+    color: #0056b3;
+}
+
+.additional-links {
+    margin-top: 20px;
+}
+
+.add-post-btn, .back-home {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.add-post-btn:hover, .back-home:hover {
+    background-color: #0056b3;
+}
+.card-actions a {
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 10px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+.card-actions a:hover {
+    color: #0056b3;
+}
+
+.pagination-controls{
+    margin-top: 10px;
+}
+
+.prev-page, .next-page{
+    color: #007bff;
+    text-decoration: none;
+    margin-right: 10px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+.prev-page:hover, .next-page:hover{
+    color: #0056b3;
+}

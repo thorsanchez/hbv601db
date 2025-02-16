@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Forum</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<form th:action="@{/forum/editForum/{forumId}(forumId=${forum.forum_id})}" th:object="${forum}" method="post">
+    <input type="hidden" name="_method" value="patch" />
+
+    <label for="name">Name</label>
+    <input type="text" th:field="*{name}" id="name" placeholder="Name of the Forum">
+
+    <label for="description">Description</label>
+    <textarea th:field="*{description}" id="description" placeholder="Description"></textarea>
+
+    <label for="category">Category</label>
+    <input type="text" th:field="*{category}" id="category" placeholder="Category">
+
+    <button type="submit">Save Changes</button>
+</form>
+</body>
+</html>

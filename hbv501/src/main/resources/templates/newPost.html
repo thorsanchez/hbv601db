@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Post</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<form action="#" th:action="@{/addpost}" th:object="${post}" method="post">
+    <label for="tag">Tag</label>
+    <input type="text" th:field="*{tag}" id="tag" placeholder="Tag">
+    <span th:if="${#fields.hasErrors('tag')}" th:errors="*{tag}"></span>
+
+    <label for="title">Title</label>
+    <input type="text" th:field="*{title}" id="title" placeholder="Title">
+    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
+
+    <label for="content">Content</label>
+    <textarea type="text" th:field="*{content}" id="content" placeholder="Content"></textarea>
+    <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></span>
+
+    <button type="submit">Add Post</button>
+</form>
+
+</body>
+</html>

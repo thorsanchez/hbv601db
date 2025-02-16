@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Ad</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<form th:action="@{/ad/editAd/{adId}(adId=${ad.adId})}" th:object="${ad}" method="post">
+    <input type="hidden" name="_method" value="patch" />
+
+    <label for="amount">Amount</label>
+    <input type="text" th:field="*{amount}" id="amount" placeholder="Amount">
+
+    <label for="category">Category</label>
+    <input type="text" th:field="*{category}" id="category" placeholder="Category">
+
+    <label for="contents">Content</label>
+    <textarea th:field="*{contents}" id="contents" placeholder="Contents"></textarea>
+
+    <button type="submit">Save Changes</button>
+</form>
+</body>
+</html>

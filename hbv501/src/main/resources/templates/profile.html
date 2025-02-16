@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+<div class="top-bar">
+    <div class="welcome-message" th:if="${user != null}">
+        Welcome, <span th:text="${user.username}"></span>!
+    </div>
+    <div class="auth-links">
+        <a href="/signup" th:if="${user == null}">Signup</a>
+        <a href="/login" th:if="${user == null}">Login</a>
+        <a href="/logout" th:if="${user != null}">Logout</a>
+        <a href="/deleteUser" th:if="${user != null}">Delete User</a>
+    </div>
+</div>
+
+<div class="container">
+    <h1>Edit Profile</h1>
+
+    <form th:action="@{/profile/edit}" th:object="${user}" method="post">
+        <input type="hidden" th:field="*{userId}"/>
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" th:field="*{username}" readonly/>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" th:field="*{email}"/>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" th:field="*{password}"/>
+
+        <button type="submit">Save Changes</button>
+    </form>
+
+    <p th:if="${successMessage}" th:text="${successMessage}"></p>
+
+    <div class="card-actions">
+        <a href="/">Back home</a>
+    </div>
+
+<div th:if="${user != null}">
+    <h2>My Forums</h2>
+    <div th:if="${myForum == null || #lists.isEmpty(myForum)}" class="no-forum-message">
+        <h3>No Forums yet!</h3>
+    </div>
+    <h3 th:text="'Page ' + ${pageNumber} + '/' + ${maxPage}">Page Number</h3>
+    <div th:if="${myForum != null && !#lists.isEmpty(myForum)}">
+        <div class="forum-cards">
+            <div class="forum-card" th:each="forum : ${myForum}">
+                <h3 th:text="${forum.name}"></h3>
+                <p th:text="${forum.description}"></p>
+                <span class="category" th:text="${forum.category}"></span>
+                <div class="card-actions">
+                    <a th:href="@{/forum/{forumId}(forumId=${forum.forum_id})}">View</a>
+                    <a th:href="@{/forum/editForum/{forumId}(forumId=${forum.forum_id})}">Edit</a>
+                    <a th:href="@{/forum/delete/{forumId}(forumId=${forum.forum_id})}">Delete</a>
+                </div>
+            </div>
+        </div>
+        <div class="pagination-controls">
+            <a th:href="@{/profile(page=${pageNumber-1})}" th:if="${pageNumber > 1}" class="prev-page">Previous Page</a>
+            <a th:href="@{/profile(page=${pageNumber+1})}" th:if="${pageNumber < maxPage}" class="next-page">Next Page</a>
+        </div>
+    </div>
+    <h2>My Ads</h2>
+    <div th:if="${myAds == null || #lists.isEmpty(myAds)}" class="no-ad-message">
+        <h3>No Ads yet!</h3>
+    </div>
+    <div th:if="${myAds != null && !#lists.isEmpty(myAds)}">
+        <div class="ad-cards">
+            <div class="ad-card" th:each="ad : ${myAds}">
+                <h3 th:text="${ad.category}"></h3>
+                <p th:text="${ad.contents}"></p>
+
+                <div class="card-actions">
+                    <a th:href="@{/ad/editAd/{adId}(adId=${ad.adId})}">Edit</a>
+                    <a th:href="@{/ad/delete/{adId}(adId=${ad.adId})}">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>
